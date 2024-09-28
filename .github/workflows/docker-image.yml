@@ -29,10 +29,10 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag my-image-name:${{ steps.get_tag.outputs.tag }}
+        docker build . --file Dockerfile --tag desafiojack:${{ steps.get_tag.outputs.tag }}
 
     - name: Push the Docker image
       run: |
-        docker tag my-image-name:${{ steps.get_tag.outputs.tag }} dockerhub-username/my-image-name:${{ steps.get_tag.outputs.tag }}
+        docker tag desafiojack:${{ steps.get_tag.outputs.tag }} alexgbraga/desafiojack:${{ steps.get_tag.outputs.tag }}
         echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-        docker push dockerhub-username/my-image-name:${{ steps.get_tag.outputs.tag }}
+        docker push alexgbraga/desafiojack:${{ steps.get_tag.outputs.tag }}
