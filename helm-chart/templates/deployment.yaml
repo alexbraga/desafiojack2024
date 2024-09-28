@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: desafiojack
+  labels:
+    {{- with .Values.commonLabels }}
+    {{ toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ .Values.commonLabels.app }}
+  template:
+    metadata:
+      labels:
+        {{- with .Values.commonLabels }}
+        {{ toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      containers:
+      - name: desafiojack-alex
+        image: {{ .Values.image.repository | quote }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        volumeMounts:
+        - name: html-config
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: html-config
+        configMap:
+          name: html-configmap

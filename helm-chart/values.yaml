@@ -1,0 +1,54 @@
+replicaCount: 1
+
+image:
+  repository: alexgbraga/desafiojack:1.0
+
+commonLabels:
+  app: desafiojack
+  desafio: jackexperts
+
+ingress:
+  host: "desafiojack.com"
+
+service:
+  port: 8080
+  targetPort: 8080
+
+htmlContent: |
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informações de Contato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-width: 400px;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+        .highlight {
+            font-weight: bold;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Alexandre Braga</h1>
+    <p><span class="highlight">Curso:</span> Ciência da Computação (UniBH)</p>
+    <p><span class="highlight">E-mail:</span> <a href="mailto:contato@alexbraga.com.br">contato@alexbraga.com.br</a></p>
+    <p><span class="highlight">Telefone:</span> (31) 99979-1108</p>
+    <p><span class="highlight">Localização:</span> Belo Horizonte - MG</p>
+    <p><span class="highlight">Situação:</span> Desempregado</p>
+  </body>
+  </html>
